@@ -1,16 +1,16 @@
 const crypto = require('../helpers/crypto');
 const {
-  getAllServices, addUserServices,
+  getAllServices, addUserServices, deleteUserServices,
 } = require('../services/userServices');
 
 module.exports = {
-  async getAllController(_req, res) {
+  async getAllControllers(_req, res) {
     const response = await getAllServices();
 
     return res.status(200).json(response);
   },
 
-  async addUserController(req, res) {
+  async addUserControllers(req, res) {
     const {
       nome_usuario: username, tipo_usuario: userType, email, password,
     } = req.body;
@@ -34,5 +34,13 @@ module.exports = {
     }
 
     return res.status(201).json({ message: 'Usuário adicionado com sucesso' });
+  },
+
+  async deleteUserControllers(req, res) {
+    const { id } = req.params;
+
+    const response = await deleteUserServices(id);
+
+    return res.status(response.statusCode).json({ message: response.message });
   },
 };

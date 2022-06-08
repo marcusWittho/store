@@ -12,4 +12,16 @@ module.exports = {
 
     return { id: response.insertId };
   },
+
+  async getUserByEmail(email) {
+    const response = await knex('cadastro_usuario').where('email', email);
+
+    return response;
+  },
+
+  async deleteUserModels(id) {
+    await knex('cadastro_usuario').where('id', id).del();
+
+    return { statusCode: 200, message: 'Usuário removido com sucesso.' };
+  },
 };
