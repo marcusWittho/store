@@ -24,4 +24,12 @@ module.exports = {
 
     return { statusCode: 200, message: 'Usuário removido com sucesso.' };
   },
+
+  async updateUserModels(id, userUpdated) {
+    await knex('cadastro_usuario')
+      .where('id', id)
+      .update(userUpdated);
+
+    return { statusCode: 200, message: 'Informações atualizadas.' };
+  },
 };

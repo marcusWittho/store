@@ -1,6 +1,6 @@
 const crypto = require('../helpers/crypto');
 const {
-  getAllServices, addUserServices, deleteUserServices,
+  getAllServices, addUserServices, deleteUserServices, updateUserServices,
 } = require('../services/userServices');
 
 module.exports = {
@@ -42,5 +42,26 @@ module.exports = {
     const response = await deleteUserServices(id);
 
     return res.status(response.statusCode).json({ message: response.message });
+  },
+
+  async updateUserControllers(req, res) {
+    const {
+      nome_usuario: username, tipo_usuario: userType, email, password,
+    } = req.body;
+    const { id } = req.params;
+
+    const encryptedPass = crypto.encrypt(password);
+
+    const newUser = {
+      nome_usuario: username,
+      tipo_usuario: userType,
+      email,
+      password: encryptedPass.password,
+      password_iv: encryptedPass.iv,
+    };
+
+    const response = await updateUserServices(id, newUser);
+
+    return res.status(200).json(response);
   },
 };

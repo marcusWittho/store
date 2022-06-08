@@ -1,5 +1,5 @@
 const {
-  getAllModels, addUserModels, getUserByEmail, deleteUserModels,
+  getAllModels, addUserModels, getUserByEmail, deleteUserModels, updateUserModels,
 } = require('../models/userModels');
 
 const isValid = (newUser) => {
@@ -40,6 +40,12 @@ module.exports = {
     if (!id) return false;
 
     const response = await deleteUserModels(id);
+
+    return response;
+  },
+
+  async updateUserServices(id, userUpdated) {
+    const response = await updateUserModels(id, userUpdated);
 
     return response;
   },
