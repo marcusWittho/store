@@ -13,9 +13,8 @@ module.exports = {
   },
 
   async addProductControllers(req, res) {
-    const {
-      nome_produto: product, descricao, valor, imagem,
-    } = req.body;
+    const { nome_produto: product, descricao, valor } = req.body;
+    const imagem = req.file.path;
 
     const newProduct = {
       nome_produto: product,
@@ -44,9 +43,8 @@ module.exports = {
   },
 
   async updateProductControllers(req, res) {
-    const {
-      nome_produto: product, descricao, valor, imagem,
-    } = req.body;
+    const { nome_produto: product, descricao, valor } = req.body;
+    const imagem = req.file.path;
     const { id } = req.params;
 
     const newProduct = {
