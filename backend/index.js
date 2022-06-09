@@ -10,8 +10,10 @@ const PORT = process.env.SERVER || 3000;
 app.use(bodyParser);
 
 const usersRoutes = require('./src/routes/userRoutes');
+const productsRoutes = require('./src/routes/productRoutes');
 
 app.use('/user', usersRoutes);
+app.use('/product', productsRoutes);
 
 app.use(errors);
 
