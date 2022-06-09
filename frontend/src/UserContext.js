@@ -16,7 +16,9 @@ export function UserStorage({ children }) {
 
       if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
-      setData(response);
+      const userJson = await response.json();
+
+      setData(userJson);
     } catch (err) {
       setError(err.message);
     }
