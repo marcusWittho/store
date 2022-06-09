@@ -22,17 +22,18 @@ module.exports = {
   },
 
   decrypt(encryptedData) {
+    const ivBuffer = Buffer.from(encryptedData.iv, 'hex');
+
     const decipher = crypto.createDecipheriv(
       'aes-256-cbc',
       Buffer.from(process.env.CRYPTO_SECRET),
-      Buffer.from(encryptedData.iv, 'hex'),
+      ivBuffer,
     );
 
-    const decryptedPass = Buffer.concat([
-      decipher.update(Buffer.from(encryptedData.password), 'hex'),
-      decipher.final(),
-    ]);
+    let content = decipher.update(Buffer.from(encryptedData.password, 'hex'));
 
-    return decryptedPass.toString();
+    content = Buffer.concat([content, decipher.final()]);
+
+    return content.toString();
   },
 };

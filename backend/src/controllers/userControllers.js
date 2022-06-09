@@ -4,9 +4,18 @@ const {
   addUserServices,
   deleteUserServices,
   updateUserServices,
+  loginServices,
 } = require('../services/userServices');
 
 module.exports = {
+  async loginControlelrs(req, res) {
+    const { email, password } = req.body;
+
+    const response = await loginServices(email, password);
+
+    return res.status(200).json(response);
+  },
+
   async getAllControllers(_req, res) {
     const response = await getAllServices();
 
