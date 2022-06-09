@@ -15,6 +15,9 @@ const productsRoutes = require('./src/routes/productRoutes');
 app.use('/user', usersRoutes);
 app.use('/product', productsRoutes);
 
+app.all('*', (req, res) => res.status(404)
+  .json({ message: `Ops... a rota ${req.path} não existe.` }));
+
 app.use(errors);
 
 // eslint-disable-next-line no-console

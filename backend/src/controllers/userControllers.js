@@ -1,6 +1,9 @@
 const crypto = require('../helpers/crypto');
 const {
-  getAllServices, addUserServices, deleteUserServices, updateUserServices,
+  getAllServices,
+  addUserServices,
+  deleteUserServices,
+  updateUserServices,
 } = require('../services/userServices');
 
 module.exports = {

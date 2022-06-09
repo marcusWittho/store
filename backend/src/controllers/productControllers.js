@@ -1,5 +1,8 @@
 const {
-  getAllProductsServices, addProductServices,
+  getAllProductsServices,
+  addProductServices,
+  deleteProductServices,
+  updateProductServices,
 } = require('../services/productServices');
 
 module.exports = {
@@ -30,5 +33,31 @@ module.exports = {
     }
 
     return res.status(201).json({ message: 'Produto adicionado com sucesso' });
+  },
+
+  async deleteProductControllers(req, res) {
+    const { id } = req.params;
+
+    const response = await deleteProductServices(id);
+
+    return res.status(response.statusCode).json({ message: response.message });
+  },
+
+  async updateProductControllers(req, res) {
+    const {
+      nome_produto: product, descricao, valor, imagem,
+    } = req.body;
+    const { id } = req.params;
+
+    const newProduct = {
+      nome_produto: product,
+      descricao,
+      valor,
+      imagem,
+    };
+
+    const response = await updateProductServices(id, newProduct);
+
+    return res.status(200).json(response);
   },
 };

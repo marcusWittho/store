@@ -1,5 +1,9 @@
 const {
-  getAllModels, addUserModels, getUserByEmail, deleteUserModels, updateUserModels,
+  getAllModels,
+  addUserModels,
+  getUserByEmail,
+  deleteUserModels,
+  updateUserModels,
 } = require('../models/userModels');
 
 const isValid = (newUser) => {
