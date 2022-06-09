@@ -1,11 +1,35 @@
 const knex = require('../config/db');
 
-const getAllModels = async () => {
-  const response = await knex('cadastro_usuario');
-
-  return response;
-};
-
 module.exports = {
-  getAllModels,
+  async getAllModels() {
+    const response = await knex('cadastro_usuario');
+
+    return response;
+  },
+
+  async addUserModels(newUser) {
+    const [response] = await knex('cadastro_usuario').insert([newUser]);
+
+    return { id: response.insertId };
+  },
+
+  async getUserByEmail(email) {
+    const response = await knex('cadastro_usuario').where('email', email);
+
+    return response;
+  },
+
+  async deleteUserModels(id) {
+    await knex('cadastro_usuario').where('id', id).del();
+
+    return { statusCode: 200, message: 'Usuário removido com sucesso.' };
+  },
+
+  async updateUserModels(id, userUpdated) {
+    await knex('cadastro_usuario')
+      .where('id', id)
+      .update(userUpdated);
+
+    return { statusCode: 200, message: 'Informações atualizadas.' };
+  },
 };

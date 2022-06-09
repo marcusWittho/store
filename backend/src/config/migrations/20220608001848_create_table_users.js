@@ -1,6 +1,6 @@
 exports.up = (knex) => knex.schema.createTable('cadastro_usuario', (table) => {
   table.increments('id').primary();
-  table.uuid('uuid').notNull().unique();
+  table.uuid('uuid').notNull().defaultTo(knex.raw('(UUID())'));
   table.string('nome_usuario', [250]).notNull();
   table.string('tipo_usuario', [250]).notNull();
   table.string('password', [250]).notNull();
