@@ -4,6 +4,7 @@ import './App.css';
 import { UserStorage } from './UserContext';
 
 import Home from './components/Home';
+import Login from './components/login/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <main className="AppBody">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login/*" element={<Login />} />
             </Routes>
           </main>
         </UserStorage>

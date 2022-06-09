@@ -7,7 +7,7 @@ const types = {
   },
   password: {
     regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])$/,
-    message: 'A senha deve conter pelo menos uma letra maiúscula, um número, um caractere especiial e no mínimo 8 caracteres.',
+    message: 'Utilize pelo menos uma letra maiúscula, uma minúscula e um número.',
   },
 };
 
