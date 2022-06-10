@@ -2,13 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-import { CREATE_USER, LOGIN_USER, CREATE_PRODUCT } from './api';
+import {
+  CREATE_USER,
+  LOGIN_USER,
+  CREATE_PRODUCT,
+  GET_PRODUCTS,
+} from './api';
 
 export const UserContext = React.createContext();
 
 export function UserStorage({ children }) {
   const [data, setData] = React.useState(null);
   const [error, setError] = React.useState(null);
+  const [products, setProducts] = React.useState(null);
   const navigate = useNavigate();
 
   async function loginUser(email, password) {
@@ -60,14 +66,30 @@ export function UserStorage({ children }) {
     }
   }
 
+  async function getProducts() {
+    try {
+      setError(null);
+      const { url, options } = GET_PRODUCTS();
+      const response = await fetch(url, options);
+
+      if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+      setProducts(response);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const context = {
     data,
     setData,
     error,
+    products,
     loginUser,
     createUser,
     createProduct,
+    getProducts,
   };
 
   return (
