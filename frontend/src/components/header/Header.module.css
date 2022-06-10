@@ -1,0 +1,51 @@
+.header {
+  background-color: var(--standard-white);
+  border-bottom: 2px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  height: 9vh;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.navList {
+  width: 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logout, .login {
+  font-size: 1.2rem;
+  font-family: var(--type-first);
+  text-align: left;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.4rem;
+  background-color: var(--standard-yellow-1);
+  color: #333;
+  padding: 0.5rem 0.7rem;
+  box-sizing: border-box;
+  min-width: 8rem;
+  transition: ease-in-out 150ms;
+}
+
+.logout:hover, .login:hover,
+.logout:focus, .login:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--standard-yellow-2), 0 0 0 3px var(--standard-yellow-2);
+}
+
+.logout:disabled, .login:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.login {
+  padding-right: 4rem;
+}

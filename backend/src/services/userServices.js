@@ -1,5 +1,10 @@
+const crypto = require('../helpers/crypto');
 const {
-  getAllModels, addUserModels, getUserByEmail, deleteUserModels, updateUserModels,
+  getAllModels,
+  addUserModels,
+  getUserByEmail,
+  deleteUserModels,
+  updateUserModels,
 } = require('../models/userModels');
 
 const isValid = (newUser) => {
@@ -12,6 +17,28 @@ const isValid = (newUser) => {
 };
 
 module.exports = {
+  async loginServices(email, password) {
+    if (!email || typeof email !== 'string') return false;
+    if (!password || typeof password !== 'string') return false;
+
+    const [userExists] = await getUserByEmail(email);
+
+    if (userExists === undefined) {
+      return { statusCode: 400, message: 'Email não cadastrado.' };
+    }
+
+    const encrypted = { password: userExists.password, iv: userExists.password_iv };
+    const decryptedPass = crypto.decrypt(encrypted);
+
+    if (decryptedPass !== password) {
+      return { statusCode: 400, message: 'Senha incorreta.' };
+    }
+
+    const user = await getUserByEmail(email);
+
+    return user;
+  },
+
   async getAllServices() {
     const response = await getAllModels();
 
