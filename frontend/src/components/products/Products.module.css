@@ -1,0 +1,25 @@
+.products {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  min-height: 100vh;
+  gap: 2rem;
+}
+
+.forms {
+  max-width: 30rem;
+}
+
+@media (max-width: 52rem) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+
+  .products::before {
+    display: none;
+  }
+
+  .forms {
+    max-width: 100%;
+  }
+}

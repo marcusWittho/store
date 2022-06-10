@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-import { CREATE_USER, LOGIN_USER } from './api';
+import { CREATE_USER, LOGIN_USER, CREATE_PRODUCT } from './api';
 
 export const UserContext = React.createContext();
 
@@ -27,7 +27,7 @@ export function UserStorage({ children }) {
       }
 
       setData(userJson);
-      navigate('/');
+      navigate('/products');
     } catch (err) {
       setError(err.message);
     }
@@ -41,12 +41,22 @@ export function UserStorage({ children }) {
 
       if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
-      const userJson = await response.json();
-      console.log('UserContext: ', userJson);
-
-      return userJson;
+      await loginUser(newUser.email, newUser.password);
     } catch (err) {
-      return setError(err.message);
+      setError(err.message);
+    }
+  }
+
+  async function createProduct(newProduct) {
+    try {
+      setError(null);
+      const { url, options } = CREATE_PRODUCT(newProduct);
+      const response = await fetch(url, options);
+
+      if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+      navigate('/');
+    } catch (err) {
+      setError(err.message);
     }
   }
 
@@ -57,6 +67,7 @@ export function UserStorage({ children }) {
     error,
     loginUser,
     createUser,
+    createProduct,
   };
 
   return (
