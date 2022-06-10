@@ -45,7 +45,8 @@ module.exports = {
         .json({ message: addedUser.message });
     }
 
-    return res.status(201).json({ message: 'Usuário adicionado com sucesso' });
+    return res.status(201)
+      .json({ statusCode: 201, message: 'Usuário adicionado com sucesso' });
   },
 
   async deleteUserControllers(req, res) {

@@ -34,7 +34,9 @@ module.exports = {
       return { statusCode: 400, message: 'Senha incorreta.' };
     }
 
-    return { statusCode: 200, message: `Olá, ${userExists.nome_usuario}` };
+    const user = await getUserByEmail(email);
+
+    return user;
   },
 
   async getAllServices() {

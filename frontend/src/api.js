@@ -10,3 +10,14 @@ export function LOGIN_USER(loginInfo) {
     },
   };
 }
+
+export function CREATE_USER(newUser) {
+  return {
+    url: `${API_URL}/add`,
+    options: {
+      method: 'POST',
+      headers: { 'content-Type': 'application/json' },
+      body: JSON.stringify(newUser),
+    },
+  };
+}

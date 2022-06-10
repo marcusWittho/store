@@ -7,7 +7,7 @@ import Input from '../forms/Input';
 import Button from '../forms/Button';
 
 function LoginForm() {
-  const userEmail = useForm();
+  const username = useForm();
   const password = useForm();
 
   const { loginUser } = React.useContext(UserContext);
@@ -15,8 +15,8 @@ function LoginForm() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (userEmail.validate() && password.validate()) {
-      await loginUser(userEmail.value, password.value);
+    if (username.validate() && password.validate()) {
+      await loginUser(username.value, password.value);
     }
   }
 
@@ -24,13 +24,13 @@ function LoginForm() {
     <section className="initialAnimation loginForm">
       <h1 className="title">Login</h1>
 
-      <form className={styles.form} submit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input
           label="Email"
           type="text"
-          name="userEmail"
+          name="username"
           // eslint-disable-next-line react/jsx-props-no-spreading
-          {...userEmail}
+          {...username}
         />
 
         <Input
