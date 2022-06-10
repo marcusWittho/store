@@ -5,6 +5,7 @@ import { UserStorage } from './UserContext';
 
 import Home from './components/Home';
 import Login from './components/login/Login';
+import Products from './components/products/Products';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="login/*" element={<Login />} />
+              <Route path="products" element={<Products />} />
             </Routes>
           </main>
         </UserStorage>

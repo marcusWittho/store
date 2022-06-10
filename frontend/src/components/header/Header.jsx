@@ -19,7 +19,22 @@ function Header() {
         data
           ? (
             <ul className={styles.navList}>
-              <li><p>{data[0].nome_usuario}</p></li>
+              <li>
+                <NavLink
+                  className={styles.sigin}
+                  to="/"
+                >
+                  {data[0].nome_usuario}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={styles.sigin}
+                  to="/products"
+                >
+                  Cadastrar produto
+                </NavLink>
+              </li>
               <li>
                 <button
                   className={styles.logout}
