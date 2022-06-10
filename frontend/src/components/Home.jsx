@@ -1,11 +1,13 @@
 import React from 'react';
+
 import Header from './header/Header';
+import ProductCard from './products/ProductCard';
 
 function Home() {
   return (
     <section>
       <Header />
-      <h1 style={{ fontSize: '4rem' }}>Coinsure Store</h1>
+      <ProductCard />
     </section>
   );
 }

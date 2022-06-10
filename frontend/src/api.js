@@ -32,3 +32,12 @@ export function CREATE_PRODUCT(newProduct) {
     },
   };
 }
+
+export function GET_PRODUCTS() {
+  return {
+    url: `${API_PRODUCT}/`,
+    options: {
+      method: 'GET',
+    },
+  };
+}
